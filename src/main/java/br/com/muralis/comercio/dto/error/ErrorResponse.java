@@ -1,3 +1,15 @@
 package br.com.muralis.comercio.dto.error;
 
-public record ErrorResponse (String message){}
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class ErrorResponse {
+    private String message;
+
+    public ErrorResponse(String message) {
+        this.message = message;
+    }
+
+}

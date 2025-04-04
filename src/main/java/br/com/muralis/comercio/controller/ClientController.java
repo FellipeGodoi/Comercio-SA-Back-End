@@ -2,6 +2,7 @@ package br.com.muralis.comercio.controller;
 
 import br.com.muralis.comercio.entity.Client;
 import br.com.muralis.comercio.service.ClientService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,12 @@ public class ClientController {
 
     //criar
     @PostMapping
-    public ResponseEntity<Client> createClient(@RequestBody Client client) {
+    public ResponseEntity<Client> createClient(@RequestBody @Valid Client client) {
         Client newClient = clientService.createClient(client);
         return ResponseEntity.status(201).body(newClient);
     }
 
     //att
-
     @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client clientDetails) {
         if (clientService.getClientById(id).isPresent()) {
