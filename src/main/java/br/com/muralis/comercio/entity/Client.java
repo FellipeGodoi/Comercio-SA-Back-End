@@ -1,6 +1,6 @@
 package br.com.muralis.comercio.entity;
 
-import br.com.muralis.comercio.exception.annotation.UniqueValue;
+//import br.com.muralis.comercio.exception.annotation.UniqueValue;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,7 +26,7 @@ public class Client {
     @Column(length = 100 ,nullable = false)
     private String nome;
 
-    @UniqueValue(domainClass = Client.class, fieldName = "cpf", message = "esse cpf ja esta cadastrado")
+//    @UniqueValue(domainClass = Client.class, fieldName = "cpf", message = "esse cpf ja esta cadastrado")
     @NotBlank(message = "cpf não pode ser vazio")
     @Column(length = 14, nullable = false, unique = true)
     private String cpf;
@@ -37,6 +38,7 @@ public class Client {
     @Column
     private String endereco;
 
-
+    @OneToMany (mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contact> contatos;
 
 }

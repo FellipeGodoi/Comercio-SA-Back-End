@@ -54,3 +54,4 @@ Comercio-SA/
 ## Video
 
 ### Referencias
+https://youtu.be/GmbK-O3v3Gg?si=r-lxDhtKRwhrnrt0

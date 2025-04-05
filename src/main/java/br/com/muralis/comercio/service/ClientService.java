@@ -4,11 +4,13 @@ import br.com.muralis.comercio.entity.Client;
 import br.com.muralis.comercio.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Validated
 @AllArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
