@@ -26,7 +26,6 @@ public class Client {
     @Column(length = 100 ,nullable = false)
     private String nome;
 
-//    @UniqueValue(domainClass = Client.class, fieldName = "cpf", message = "esse cpf ja esta cadastrado")
     @NotBlank(message = "cpf não pode ser vazio")
     @Column(length = 14, nullable = false, unique = true)
     private String cpf;

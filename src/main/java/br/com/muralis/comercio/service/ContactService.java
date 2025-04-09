@@ -15,13 +15,10 @@ public class ContactService {
     private final ContactRepository contactRepository;
     private final ClientRepository clientRepository;
 
-    //consulta
-
     public Optional<Contact> findContact(Long id) {
         return contactRepository.findById(id);
     }
 
-    //create
     public Contact createContact(Contact contact, Long idCliente) {
         Client client = clientRepository.findById(idCliente)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
@@ -29,7 +26,6 @@ public class ContactService {
         return contactRepository.save(contact);
     }
 
-    //updt
     public Contact updateContact(Contact newContact, Long id) {
         return contactRepository.findById(id)
                 .map(contact -> {
@@ -41,11 +37,10 @@ public class ContactService {
                 .orElseThrow(() -> new RuntimeException("Contato não encontrado"));
     }
 
-    //delete
     public void deleteContact(Long id) {
-        if (findContact(id).isPresent()) {
-            contactRepository.deleteById(id);
+        if (findContact(id).isEmpty()) {
+            throw new RuntimeException("Contanto não encontrado");
         }
-        throw new RuntimeException("Contanto não encontrado");
+        contactRepository.deleteById(id);
     }
 }

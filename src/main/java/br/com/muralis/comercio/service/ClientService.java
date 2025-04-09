@@ -15,7 +15,6 @@ import java.util.Optional;
 public class ClientService {
     private final ClientRepository clientRepository;
 
-    // consulta
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
@@ -32,12 +31,10 @@ public class ClientService {
         return clientRepository.findClientByNameOrCPF(search);
     }
 
-    //Cad
     public Client createClient(Client client) {
         return clientRepository.save(client);
     }
 
-    //updade
     public Optional<Client> updateClient(Client clientDetails, Long id) {
         Optional<Client> existingClient = clientRepository.findById(id);
         if (existingClient.isPresent()) {
@@ -52,7 +49,6 @@ public class ClientService {
         return Optional.empty();
     }
 
-    //delete
     public void deleteClient(Long id) {
         if (!clientRepository.existsById(id)) {
             throw new IllegalArgumentException(" Cliente não encontrados.");
