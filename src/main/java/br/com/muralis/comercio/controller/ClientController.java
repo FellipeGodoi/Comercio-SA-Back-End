@@ -16,7 +16,6 @@ import java.util.Optional;
 public class ClientController {
     private final ClientService clientService;
 
-    //buscar
     @GetMapping
     public ResponseEntity<List<Client>> findClient(@RequestParam(required = false) String filter) {
         if (filter != null && !filter.isEmpty()) {
@@ -36,14 +35,12 @@ public class ClientController {
         return ResponseEntity.ok(clientService.getClientById(id));
     }
 
-    //criar
     @PostMapping
     public ResponseEntity<Client> createClient(@RequestBody @Valid Client client) {
         Client newClient = clientService.createClient(client);
         return ResponseEntity.status(201).body(newClient);
     }
 
-    //att
     @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client clientDetails) {
         if (clientService.getClientById(id).isPresent()) {
@@ -55,7 +52,6 @@ public class ClientController {
     }
 
 
-    //delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
